@@ -1,0 +1,1068 @@
+[
+  {
+    "name": ".52ガロン",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": ".52ガロンデコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": ".96ガロン",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": ".96ガロンデコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": ".96ガロン爪",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "14式竹筒銃・乙",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "14式竹筒銃・甲",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "24式張替傘・乙",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "24式張替傘・甲",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "4Kスコープ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "4Kスコープカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "H3リールガン",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "H3リールガンD",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "H3リールガンSNAK",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "L3リールガン",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "L3リールガンD",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "L3リールガン箔",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "LACT-450",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "LACT-450MILK",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "LACT-450デコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "N-ZAP85",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "N-ZAP89",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "R-PEN/5B",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "R-PEN/5H",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "Rブラスターエリート",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "RブラスターエリートWNTR",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "Rブラスターエリートデコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "S-BLAST91",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "S-BLAST92",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "イグザミナー・ヒュー",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "イグザミナー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ヴァリアブルローラー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ヴァリアブルローラーフォイル",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "エクスプロッシャー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "エクスプロッシャーカスタム",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "オーバーフロッシャー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "オーバーフロッシャーデコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "カーボンローラー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "カーボンローラーANGL",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "カーボンローラーデコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ガエンFF",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ガエンFFカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "キャンピングシェルター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "キャンピングシェルターCREM",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "キャンピングシェルターソレーラ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "クアッドホッパーブラック",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "クアッドホッパーホワイト",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "クーゲルシュライバー・ヒュー",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "クーゲルシュライバー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "クマサン印のシェルター",
+    "modes": [
+      "salmon"
+    ]
+  },
+  {
+    "name": "クマサン印のストリンガー",
+    "modes": [
+      "salmon"
+    ]
+  },
+  {
+    "name": "クマサン印のスロッシャー",
+    "modes": [
+      "salmon"
+    ]
+  },
+  {
+    "name": "クマサン印のチャージャー",
+    "modes": [
+      "salmon"
+    ]
+  },
+  {
+    "name": "クマサン印のブラスター",
+    "modes": [
+      "salmon"
+    ]
+  },
+  {
+    "name": "クマサン印のマニューバー",
+    "modes": [
+      "salmon"
+    ]
+  },
+  {
+    "name": "クマサン印のローラー",
+    "modes": [
+      "salmon"
+    ]
+  },
+  {
+    "name": "クマサン印のワイパー",
+    "modes": [
+      "salmon"
+    ]
+  },
+  {
+    "name": "クラッシュブラスター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "クラッシュブラスターネオ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ケルビン525",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ケルビン525デコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ジェットスイーパー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ジェットスイーパーCOBR",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ジェットスイーパーカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ジムワイパー・ヒュー",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ジムワイパー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ジムワイパー封",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "シャープマーカー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "シャープマーカーGECK",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "シャープマーカーネオ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スクイックリンα",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スクイックリンβ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スクリュースロッシャー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スクリュースロッシャーネオ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スパイガジェット",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スパイガジェットソレーラ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スパイガジェット繚",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スパッタリー・ヒュー",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スパッタリー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スパッタリーOWL",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラシューター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スプラシューターコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラシューター煌",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラスコープ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラスコープFRST",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラスコープコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラスピナー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スプラスピナーPYTN",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラスピナーコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラチャージャー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スプラチャージャーFRST",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラチャージャーコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラマニューバー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スプラマニューバーコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラマニューバー耀",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スプラローラー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スプラローラーコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "スペースシューター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "スペースシューターコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ソイチューバー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ソイチューバーカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ダイナモローラー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ダイナモローラーテスラ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ダイナモローラー冥",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "デュアルスイーパー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "デュアルスイーパーカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "デュアルスイーパー蹄",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "デンタルワイパースミ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "デンタルワイパーミント",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "トライストリンガー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "トライストリンガーコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "トライストリンガー燈",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ドライブワイパー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ドライブワイパーRUST",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ドライブワイパーデコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ノヴァブラスター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ノヴァブラスターネオ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ノーチラス47",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ノーチラス79",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ハイドラント",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ハイドラントカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ハイドラント圧",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "バケットスロッシャー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "バケットスロッシャーデコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "パブロ・ヒュー",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "パブロ",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "パラシェルター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "パラシェルターソレーラ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "バレルスピナー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "バレルスピナーデコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ヒッセン・ヒュー",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ヒッセン",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ヒッセンASH",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "フィンセント・ヒュー",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "フィンセント",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "フィンセントBRNZ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "プライムシューター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "プライムシューターFRZN",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "プライムシューターコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "フルイドV",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "フルイドVカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "プロモデラーMG",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "プロモデラーRG",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "プロモデラー彩",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ボールドマーカー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ボールドマーカーネオ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ホクサイ・ヒュー",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ホクサイ",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ホットブラスター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ホットブラスターカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ホットブラスター艶",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ボトルガイザー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ボトルガイザーフォイル",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "モップリン",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "モップリンD",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "モップリン角",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "もみじシューター",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ラピッドブラスター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ラピッドブラスターデコ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "リッター4K",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "リッター4Kカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ロングブラスター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ロングブラスターカスタム",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ワイドローラー",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  },
+  {
+    "name": "ワイドローラーコラボ",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "ワイドローラー惑",
+    "modes": [
+      "battle"
+    ]
+  },
+  {
+    "name": "わかばシューター",
+    "modes": [
+      "battle",
+      "salmon"
+    ]
+  }
+]
