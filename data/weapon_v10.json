@@ -34,27 +34,27 @@
   {
     "name": "14式竹筒銃・乙",
     "modes": [
-      "battle",
-      "salmon"
+      "battle"
     ]
   },
   {
     "name": "14式竹筒銃・甲",
     "modes": [
-      "battle"
-    ]
-  },
-  {
-    "name": "24式張替傘・乙",
-    "modes": [
       "battle",
       "salmon"
     ]
   },
   {
-    "name": "24式張替傘・甲",
+    "name": "24式張替傘・乙",
     "modes": [
       "battle"
+    ]
+  },
+  {
+    "name": "24式張替傘・甲",
+    "modes": [
+      "battle",
+      "salmon"
     ]
   },
   {
@@ -220,8 +220,7 @@
   {
     "name": "エクスプロッシャーカスタム",
     "modes": [
-      "battle",
-      "salmon"
+      "battle"
     ]
   },
   {
