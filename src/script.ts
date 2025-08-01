@@ -39,6 +39,8 @@ function generateBingo(): void {
   // もう一度シャッフルして配置
   board = selectedWeapons.sort(() => Math.random() - 0.5);
 
+  saveProgress();
+
   // 描画
   render(size);
 }
@@ -93,6 +95,7 @@ function render(size: number): void {
     div.addEventListener("click", () => {
       if (cell.name !== "FREE") {
         cell.done = !cell.done;
+        saveProgress();
         render(size); // 再描画（状態更新）
       }
     });
@@ -108,8 +111,37 @@ function render(size: number): void {
   }
 }
 
+function saveProgress(): void {
+  const saveData = {
+    board, 
+    size: Math.sqrt(board.length),
+  };
+  localStorage.setItem("bingo-progress", JSON.stringify(saveData));
+}
 
-window.onload = loadWeaponData;
+function loadProgress(): {board: typeof board, size: number} | null {
+  const data = localStorage.getItem("bingo-progress");
+  if (!data) return null;
+
+  try {
+    const parsed = JSON.parse(data);
+    if (!Array.isArray(parsed.board)) return null;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+
+window.onload = () => {
+  loadWeaponData().then(() => {
+    const saved = loadProgress();
+    if (saved) {
+      board = saved.board;
+      render(saved.size)
+    }
+  })
+}
 
 // ✅ HTMLから呼べるようにする
 (window as any).generateBingo = generateBingo;

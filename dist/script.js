@@ -12,7 +12,7 @@ let allWeapons = [];
 let board = [];
 function loadWeaponData() {
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield fetch("data/weapon_v10.json");
+        const res = yield fetch("./data/weapon_v10.json");
         allWeapons = yield res.json();
         // 完了後に generateBingo を呼べるように
         const button = document.getElementById("generate-button");
@@ -37,6 +37,7 @@ function generateBingo() {
     }
     // もう一度シャッフルして配置
     board = selectedWeapons.sort(() => Math.random() - 0.5);
+    saveProgress();
     // 描画
     render(size);
 }
@@ -78,6 +79,7 @@ function render(size) {
         div.addEventListener("click", () => {
             if (cell.name !== "FREE") {
                 cell.done = !cell.done;
+                saveProgress();
                 render(size); // 再描画（状態更新）
             }
         });
@@ -90,6 +92,35 @@ function render(size) {
         status.textContent = `ビンゴ数: ${bingoCount}` + (bingoCount > 0 ? " 🎉" : "");
     }
 }
-window.onload = loadWeaponData;
+function saveProgress() {
+    const saveData = {
+        board,
+        size: Math.sqrt(board.length),
+    };
+    localStorage.setItem("bingo-progress", JSON.stringify(saveData));
+}
+function loadProgress() {
+    const data = localStorage.getItem("bingo-progress");
+    if (!data)
+        return null;
+    try {
+        const parsed = JSON.parse(data);
+        if (!Array.isArray(parsed.board))
+            return null;
+        return parsed;
+    }
+    catch (_a) {
+        return null;
+    }
+}
+window.onload = () => {
+    loadWeaponData().then(() => {
+        const saved = loadProgress();
+        if (saved) {
+            board = saved.board;
+            render(saved.size);
+        }
+    });
+};
 // ✅ HTMLから呼べるようにする
 window.generateBingo = generateBingo;
