@@ -1,10 +1,17 @@
 type Weapon = {
   name: string;
   modes: string[];
+  type: string;
 };
 
+type WeaponCell = {
+  name: string;
+  done: boolean;
+  type?: string;
+}
+
 let allWeapons: Weapon[] = [];
-let board: { name: string; done: boolean }[] = [];
+let board: WeaponCell[] = [];
 
 async function loadWeaponData(): Promise<void> {
   const res = await fetch("./data/weapon_v10.json");
@@ -29,11 +36,12 @@ function generateBingo(): void {
   // 武器リストをボードに割り当て（不足なら FREE で補充）
   const selectedWeapons = shuffled.slice(0, cellCount).map(w => ({
     name: w.name,
+    type: w.type,
     done: false,
   }));
 
   while (selectedWeapons.length < cellCount) {
-    selectedWeapons.push({ name: "FREE", done: true });
+    selectedWeapons.push({ name: "FREE", type: "free",  done: true });
   }
 
   // もう一度シャッフルして配置
@@ -90,6 +98,9 @@ function render(size: number): void {
   board.forEach((cell, i) => {
     const div = document.createElement("div");
     div.className = "cell" + (cell.done ? " done" : "");
+    if (cell.type) {
+      div.classList.add(cell.type);
+    }
     div.textContent = cell.name;
 
     div.addEventListener("click", () => {

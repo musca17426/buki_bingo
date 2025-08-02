@@ -30,10 +30,11 @@ function generateBingo() {
     // 武器リストをボードに割り当て（不足なら FREE で補充）
     const selectedWeapons = shuffled.slice(0, cellCount).map(w => ({
         name: w.name,
+        type: w.type,
         done: false,
     }));
     while (selectedWeapons.length < cellCount) {
-        selectedWeapons.push({ name: "FREE", done: true });
+        selectedWeapons.push({ name: "FREE", type: "free", done: true });
     }
     // もう一度シャッフルして配置
     board = selectedWeapons.sort(() => Math.random() - 0.5);
@@ -75,6 +76,9 @@ function render(size) {
     board.forEach((cell, i) => {
         const div = document.createElement("div");
         div.className = "cell" + (cell.done ? " done" : "");
+        if (cell.type) {
+            div.classList.add(cell.type);
+        }
         div.textContent = cell.name;
         div.addEventListener("click", () => {
             if (cell.name !== "FREE") {
