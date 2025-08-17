@@ -1,158 +1,333 @@
+import { z } from "zod";
+
 type Weapon = {
-  name: string;
-  modes: string[];
-  type: string;
+    name: string;
+    modes: string[];
+    type: string;
 };
 
 type WeaponCell = {
-  name: string;
-  done: boolean;
-  type?: string;
+    name: string;
+    done: boolean;
+    type?: string;
 }
+
+const WeaponSchema = z.object({
+    name: z.string(),
+    modes: z.boolean(),
+    type: z.string(),
+});
+
+const WeaponCellSchema = z.object({
+    name: z.string(),
+    done: z.boolean(),
+    type: z.string().optional(),
+});
+
+const BingoSchema = z.object({
+    mode: z.string(),
+    board: z.array(WeaponCellSchema),
+    size: z.number(),
+    cellCount: z.number(),
+    bingo_lines: z.number(),
+});
 
 let allWeapons: Weapon[] = [];
-let board: WeaponCell[] = [];
+
+let freeCell: WeaponCell = {
+    name: "FREE",
+    done: true,
+    // type: mode,
+};
 
 async function loadWeaponData(): Promise<void> {
-  const res = await fetch("./data/weapon_v10.json");
-  allWeapons = await res.json();
+    const res = await fetch("./data/weapon_v10.json");
+    allWeapons = await res.json();
 
-  // 完了後に generateBingo を呼べるように
-  const button = document.getElementById("generate-button") as HTMLButtonElement;
-  button.disabled = false;
-
-}
-
-function generateBingo(): void {
-  // UIからモードとサイズを取得
-  const mode = (document.getElementById("mode-select") as HTMLSelectElement).value;
-  const size = parseInt((document.getElementById("size-select") as HTMLSelectElement).value, 10);
-  const cellCount = size * size;
-
-  // 指定モードの武器一覧を取得
-  const candidates = allWeapons.filter(w => w.modes.includes(mode));
-  const shuffled = candidates.sort(() => Math.random() - 0.5);
-
-  // 武器リストをボードに割り当て（不足なら FREE で補充）
-  const selectedWeapons = shuffled.slice(0, cellCount).map(w => ({
-    name: w.name,
-    type: w.type,
-    done: false,
-  }));
-
-  while (selectedWeapons.length < cellCount) {
-    selectedWeapons.push({ name: "FREE", type: "free",  done: true });
-  }
-
-  // もう一度シャッフルして配置
-  board = selectedWeapons.sort(() => Math.random() - 0.5);
-
-  saveProgress();
-
-  // 描画
-  render(size);
-}
-
-
-function countBingoLines(board: { name: string; done: boolean }[], size: number): number {
-  const get = (row: number, col: number) => board[row * size + col].done;
-  let count = 0;
-
-  // 横列チェック
-  for (let r = 0; r < size; r++) {
-    if ([...Array(size)].every((_, c) => get(r, c))) {
-      count++;
-    }
-  }
-
-  // 縦列チェック
-  for (let c = 0; c < size; c++) {
-    if ([...Array(size)].every((_, r) => get(r, c))) {
-      count++;
-    }
-  }
-
-  // 斜め（左上→右下）
-  if ([...Array(size)].every((_, i) => get(i, i))) {
-    count++;
-  }
-
-  // 斜め（右上→左下）
-  if ([...Array(size)].every((_, i) => get(i, size - 1 - i))) {
-    count++;
-  }
-
-  return count;
+    // 完了後に generateBingo を呼べるように
+    const button = document.getElementById("generate-button") as HTMLButtonElement;
+    button.disabled = false;
 }
 
 
 
-function render(size: number): void {
-  const grid = document.getElementById("bingo-grid")!;
-  grid.innerHTML = ""; // 既存のマスを削除
+class Bingo {
+    mode: string;
+    board: WeaponCell[];
+    size: number;
+    cellCount: number;
+    bingo_lines: number;
 
-  // グリッドの列数を更新（CSS）
-  grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
-
-  // 各マスを描画
-  board.forEach((cell, i) => {
-    const div = document.createElement("div");
-    div.className = "cell" + (cell.done ? " done" : "");
-    if (cell.type) {
-      div.classList.add(cell.type);
+    constructor(mode: string, board: WeaponCell[], size: number, bingo_lines: number) {
+        this.mode = mode;
+        this.board = board;
+        this.size = size;
+        this.cellCount = size * size;
+        this.bingo_lines = bingo_lines;
     }
-    div.textContent = cell.name;
 
-    div.addEventListener("click", () => {
-      if (cell.name !== "FREE") {
-        cell.done = !cell.done;
+    toJSON(): string {
+        return JSON.stringify({
+            mode: this.mode,
+            board: this.board,
+            size: this.size,
+            // cellCount: this.cellCount,
+            bingo_lines: this.bingo_lines, 
+        });
+    }
+
+    static fromJSON(json: string): Bingo | null {
+        const obj = JSON.parse(json);
+        const result = BingoSchema.safeParse(obj);
+        if (!result.success) return null;
+
+        return new Bingo(
+            result.data.mode,
+            result.data.board,
+            result.data.size,
+            result.data.bingo_lines,
+        )
+    }
+
+    generateBingo(): void {
+        // UIからモードとサイズを取得
+        const mode = (document.getElementById("mode-select") as HTMLSelectElement).value;
+        const size = parseInt((document.getElementById("size-select") as HTMLSelectElement).value, 10);
+        const cellCount = size * size;
+
+        // 指定モードのブキ一覧を取得
+        let candidates: Weapon[] = allWeapons.filter(w => w.modes.includes(mode));
+
+        // ブキ一覧を新しいボードに反映する
+        let newBoard: WeaponCell[] = candidates.map(w => ({
+            name: w.name,
+            done: false,
+            type: w.type
+        }));
+        
+        // ↑が間違ってたらこっちを採用する
+        // let newBoard: WeaponCell[] = Array();
+
+        // for (let weapon of candidates) {
+        //     let w: WeaponCell = {
+        //         name: weapon.name,
+        //         done: false,
+        //         type: mode,
+        //     };
+        //     newBoard.push(w);
+        //     }
+
+
+        // 足りない分だけFREEマスで補充する
+        if (candidates.length < cellCount) {
+            for (let i=0; i < (cellCount - candidates.length); i++) {
+                newBoard.push(freeCell);
+            }
+        }
+
+        // ボードをシャッフルして、必要な分だけスライスで切り出す
+        newBoard = shuffleArray(newBoard).slice(0, cellCount);
+
+        // 情報をBingoに登録する
+        this.mode = mode;
+        this.board = newBoard;
+        this.size = size;
+        this.cellCount = cellCount;
+        this.bingo_lines = this.checkAllBingoLines();
+
+        // LocalStorageに保存する
         saveProgress();
-        render(size); // 再描画（状態更新）
-      }
+
+        // 描画
+        render();
+
+    }
+
+    checkNewBingoLines(r: number, c: number) {
+        // 新しくdone = true になったセルが関係するビンゴ列をチェックする。
+        // done = false -> true の際に呼ぶこと
+        // newCell.done = true を前提とする。
+
+        // クリックミスでtrue -> false にしたい場合もあって、それを考えると不便
+
+
+        // 横
+        let flag = true;
+        for (let j=0; j<this.size; j++) {
+            flag &&= this.board[r*this.size + j].done;
+        }
+        if (flag) {
+            this.bingo_lines++
+        }
+
+        // 縦
+        flag = true
+        for (let i=0; i<this.size; i++){
+            flag &&= this.board[i*this.size + c].done;
+        }
+        if (flag) {
+            this.bingo_lines++
+        }
+
+        // 右下ななめ
+        if (r == c) {
+            flag = true
+            for (let i=0; i<this.size; i++){
+                flag &&= this.board[i*this.size + i].done;
+            }
+            if (flag) {
+                this.bingo_lines++
+            }
+        }
+
+        // 左下ななめ
+        if ((r+c+1) == this.size) {
+            flag = true
+            for (let i=0; i<this.size; i++){
+                flag &&= this.board[i*this.size + (this.size - 1 - i)].done;
+            }
+            if (flag) {
+                this.bingo_lines++
+            }
+        }
+    }
+
+    checkAllBingoLines(): number {
+        // 全ての縦横斜めについてビンゴを計数する
+        let bingo_lines: number = 0;
+        
+        for (let i = 0; i < this.size; i++) {
+            let flag: boolean = true;
+            for (let j = 0; j < this.size; j++) {
+                flag &&= this.board[i*this.size + j].done;
+            }
+            if (flag) {
+                bingo_lines++;
+            }
+        }
+        
+        for (let j = 0; j < this.size; j++) {
+            let flag: boolean = true;
+            for (let i = 0; i < this.size; i++) {
+                flag &&= this.board[i*this.size + j].done;
+            }
+            if (flag) {
+                bingo_lines++;
+            }
+        }
+
+        let flag : boolean = true;
+        for (let i=0; i < this.size; i++) {
+            flag &&= this.board[i*this.size + i].done;
+        }
+        if (flag) {
+            bingo_lines++
+        }
+
+        flag = true;
+        for (let i=0; i < this.size; i++) {
+            flag &&= this.board[i*this.size + (this.size - 1 - i)].done;
+        }
+        if (flag) {
+            bingo_lines++
+        }
+
+        return bingo_lines
+
+    }
+
+}
+
+function shuffleArray(arr: Array<any>) {
+    // 配列のランダム化を行う。
+    // フィッシャーイェーツのアルゴリズムによる。
+    
+    let length = arr.length;
+    for (let i = length-1; i >= 0; i--) {
+        let j = Math.floor(Math.random() * (i+1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function render(): void {
+    const grid = document.getElementById("bingo-grid")!;
+    grid.innerHTML = "";
+
+    // グリッドの列数を更新
+    grid.style.gridTemplateColumns = `repeat(${bingo.size}, 1fr)`;
+
+    // 各マスを描画
+    bingo.board.forEach((cell, i) => {
+        const div = document.createElement("div");
+        div.className = "cell" + (cell.done ? " done" : "");
+        if (cell.type) {
+            div.classList.add(cell.type);
+        }
+        div.textContent = cell.name;
+
+        div.addEventListener("click", () => {
+            if (cell.name !== "FREE") {
+                cell.done = !cell.done;
+                bingo.bingo_lines = bingo.checkAllBingoLines();
+                saveProgress();
+                render();
+            }
+        })
+
+        grid.appendChild(div);
     });
 
-    grid.appendChild(div);
-  });
-
-  // ✅ ビンゴ数を数えて表示
-  const bingoCount = countBingoLines(board, size);
-  const status = document.getElementById("bingo-status");
-  if (status) {
-    status.textContent = `ビンゴ数: ${bingoCount}` + (bingoCount > 0 ? " 🎉" : "");
-  }
+    const status = document.getElementById("bingo-status");
+    if (status) {
+        status.textContent = `ビンゴ数: ${bingo.bingo_lines}` + (bingo.bingo_lines > 0 ? " 🎉" : "");
+    }
 }
 
-function saveProgress(): void {
-  const saveData = {
-    board, 
-    size: Math.sqrt(board.length),
-  };
-  localStorage.setItem("bingo-progress", JSON.stringify(saveData));
+function saveProgress() {
+    // Bingoクラスをそのまま載せてる
+    // いけるのか？
+    // 多分ね、それぞれをばらして載せないとダメだと思う。
+    localStorage.setItem("bingo-progress", bingo.toJSON())
 }
 
-function loadProgress(): {board: typeof board, size: number} | null {
-  const data = localStorage.getItem("bingo-progress");
-  if (!data) return null;
 
-  try {
-    const parsed = JSON.parse(data);
-    if (!Array.isArray(parsed.board)) return null;
-    return parsed;
-  } catch {
-    return null;
-  }
+function loadProgress() {
+    const data = localStorage.getItem("bingo-progress");
+    if (!data) return null;
+
+    try {
+        const parsed = JSON.parse(data);
+        if (!Array.isArray(parsed.board)) return null;
+        return parsed;
+    } catch {
+        return null;
+    }
 }
+
+
+
+
+let bingo: Bingo = new Bingo("battle", [], 5, 0)
+// let bingo: Bingo;
 
 
 window.onload = () => {
-  loadWeaponData().then(() => {
-    const saved = loadProgress();
-    if (saved) {
-      board = saved.board;
-      render(saved.size)
-    }
-  })
+    loadWeaponData().then(() => {
+        const saved = loadProgress();
+        if (saved) {
+            Object.assign(bingo, saved);
+            render()
+        }
+    })
 }
 
-// ✅ HTMLから呼べるようにする
-(window as any).generateBingo = generateBingo;
+
+// (window as any).generateBingo = bingo.generateBingo
+
+
+
+document.getElementById("generate-button")!.addEventListener("click", () => {
+    // const mode = (document.getElementById("mode-select") as HTMLSelectElement).value;
+    bingo.generateBingo();
+})

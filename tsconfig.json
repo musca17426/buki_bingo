@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
-    "module": "none",           // ✅ CommonJSやESMではなくグローバルスクリプト形式に
-    "target": "es6",
+    "target": "esnext",
+    "module": "esnext",           // ✅ CommonJSやESMではなくグローバルスクリプト形式に
+    "lib": ["ESNext", "DOM"],
+    "strict": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "outDir": "./dist",
     "rootDir": "./src",
-    "strict": true,
-    "lib": ["ES2016", "dom"]
-  }
+  },
+  "include": ["src"]
 }
