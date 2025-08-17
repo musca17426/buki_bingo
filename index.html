@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewpoint" content="width=device-width, initial-scale=1.0" />
+    <title>ブキビンゴチャレンジ</title>
+  <script type="module" crossorigin src="/buki_bingo/assets/index-DnDu2VoR.js"></script>
+  <link rel="stylesheet" crossorigin href="/buki_bingo/assets/index-CMUpFv6y.css">
+</head>
+
+<body>
+    <h1>ブキビンゴチャレンジ</h1>
+
+    <label for="mode-select">モード選択:</label>
+    <select id="mode-select">
+        <option value="battle">バトル</option>
+        <option value="salmon">サーモンラン</option>
+    </select>
+
+    <label for="size-select">サイズ: </label>
+    <select id="size-select">
+        <option value="5">5x5</option>
+        <option value="6">6x6</option>
+        <option value="7">7x7</option>
+        <option value="8">8x8</option>
+        <option value="9">9x9</option>
+        <option value="10">10x10</option>
+    </select>
+
+    <button id="generate-button" disabled>ビンゴ生成</button>
+    <p id="bingo-status">ビンゴ数: 0</p>
+
+    <div id="bingo-grid" class="grid"></div>
+
+
+
+</body>
+
+</html>
