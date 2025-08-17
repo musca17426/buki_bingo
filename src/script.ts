@@ -41,7 +41,7 @@ let freeCell: WeaponCell = {
 };
 
 async function loadWeaponData(): Promise<void> {
-    const res = await fetch("./data/weapon_v10.json");
+    const res = await fetch("/buki_bingo/weapon_v10.json");
     allWeapons = await res.json();
 
     // 完了後に generateBingo を呼べるように
