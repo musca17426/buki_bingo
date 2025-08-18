@@ -3,27 +3,32 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main  # ← デフォルトブランチ名に合わせる
+      - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 18
           cache: 'npm'
 
-      - run: npm ci
-      - run: npm run build
-      - run: ls -R dist
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Deploy
+      - name: Build project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ${{ github.workspace }}/dist
+          publish_dir: ./dist  # ビルド成果物のディレクトリを正確に指定
           publish_branch: gh-pages
