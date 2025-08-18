@@ -26,14 +26,19 @@ jobs:
       - name: Build project
         run: npm run build
 
-      # ビルド成果物を確認する
-      - name: Verify build output
-        run: ls -R dist
-
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # 正しいパスを明示的に指定
-          publish_dir: /home/runner/work/buki_bingo/buki_bingo/dist
-          publish_branch: gh-pages
+          path: './dist'
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-and-deploy
+    
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
