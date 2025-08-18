@@ -19,10 +19,11 @@ jobs:
 
       - run: npm ci
       - run: npm run build
+      - run: ls -R dist
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ${{ github.workspace }}/dist
           publish_branch: gh-pages
