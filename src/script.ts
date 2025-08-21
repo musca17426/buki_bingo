@@ -11,26 +11,34 @@ type WeaponCell = {
     done: boolean;
     type?: string;
 }
-
-const WeaponSchema = z.object({
-    name: z.string(),
-    modes: z.boolean(),
-    type: z.string(),
-});
-
 const WeaponCellSchema = z.object({
     name: z.string(),
     done: z.boolean(),
     type: z.string().optional(),
 });
-
+// 保存・復元用スキーマ
 const BingoSchema = z.object({
-    mode: z.string(),
+    mode: z.enum(["battle", "salmon"]),
+    size: z.number().int().min(1).max(10),
     board: z.array(WeaponCellSchema),
-    size: z.number(),
-    cellCount: z.number(),
-    bingo_lines: z.number(),
+    bingo_lines: z.number().int().min(0),
+}).superRefine((val, ctx) => {
+    if (val.board.length !== val.size * val.size) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            path: ["board"],
+            message: "board length must equal size^2",
+        });
+    }
 });
+
+const WeaponSchema = z.object({
+    name: z.string(),
+    modes: z.array(z.string()),
+    type: z.string(),
+});
+
+
 
 let allWeapons: Weapon[] = [];
 
@@ -66,27 +74,33 @@ class Bingo {
         this.bingo_lines = bingo_lines;
     }
 
-    toJSON(): string {
-        return JSON.stringify({
+    toPlain() {
+        return {
             mode: this.mode,
-            board: this.board,
             size: this.size,
-            // cellCount: this.cellCount,
-            bingo_lines: this.bingo_lines, 
-        });
+            board: this.board,
+            bingo_lines: this.bingo_lines,
+        };
     }
 
-    static fromJSON(json: string): Bingo | null {
-        const obj = JSON.parse(json);
-        const result = BingoSchema.safeParse(obj);
-        if (!result.success) return null;
+    static fromString(json: string): Bingo | null {
+        try {
+            const parsed = JSON.parse(json);
+            const result = BingoSchema.safeParse(parsed);
+            if (!result.success) return null;
 
-        return new Bingo(
-            result.data.mode,
-            result.data.board,
-            result.data.size,
-            result.data.bingo_lines,
-        )
+            const b = new Bingo(
+                result.data.mode,
+                result.data.board,
+                result.data.size,
+                result.data.bingo_lines
+            );
+            // 念のためビンゴ数は再計算して正規化
+            b.bingo_lines = b.checkAllBingoLines();
+            return b;
+        } catch {
+            return null;
+        }
     }
 
     generateBingo(): void {
@@ -285,24 +299,14 @@ function render(): void {
 }
 
 function saveProgress() {
-    // Bingoクラスをそのまま載せてる
-    // いけるのか？
-    // 多分ね、それぞれをばらして載せないとダメだと思う。
-    localStorage.setItem("bingo-progress", bingo.toJSON())
+    const data = BingoSchema.parse(bingo.toPlain());
+    localStorage.setItem("bingo-progress", JSON.stringify(data));
 }
 
-
-function loadProgress() {
+function loadProgress(): Bingo | null {
     const data = localStorage.getItem("bingo-progress");
     if (!data) return null;
-
-    try {
-        const parsed = JSON.parse(data);
-        if (!Array.isArray(parsed.board)) return null;
-        return parsed;
-    } catch {
-        return null;
-    }
+    return Bingo.fromString(data);
 }
 
 
@@ -316,10 +320,10 @@ window.onload = () => {
     loadWeaponData().then(() => {
         const saved = loadProgress();
         if (saved) {
-            Object.assign(bingo, saved);
-            render()
+            bingo = saved;
+            render();
         }
-    })
+    });
 }
 
 
